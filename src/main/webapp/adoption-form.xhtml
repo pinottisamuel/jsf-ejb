@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="body">
+		<div class="container">
+			<h:form styleClass="form-group">
+				<div class="panel panel-default panel-body">
+					<div class="col-md-6 border-right">
+						<h4>Tutor</h4>
+						<fieldset>
+							<div class="form-group">
+								<h:outputLabel value="Nome" for="tutorName"
+									styleClass="control-label" />
+								<h:selectOneMenu value="#{adoptionBean.tutorId}"
+									converter="javax.faces.Integer" id="tutorName"
+									styleClass="form-control">
+									<f:selectItems value="#{adoptionBean.tutores}" var="tutor"
+										itemValue="#{tutor.id}" itemLabel="#{tutor.name}" />
+								</h:selectOneMenu>
+							</div>
+						</fieldset>
+					</div>
+					<div class="col-md-6">
+						<h4>Animal</h4>
+						<fieldset>
+							<div class="form-group">
+								<h:outputLabel value="Nome" for="animalName"
+									styleClass="control-label" />
+								<h:selectOneMenu value="#{adoptionBean.animalId}"
+									converter="javax.faces.Integer" id="animalName"
+									styleClass="form-control">
+									<f:selectItems value="#{adoptionBean.animals}" var="animal"
+										itemValue="#{animal.id}" itemLabel="#{animal.name}" />
+								</h:selectOneMenu>
+							</div>
+						</fieldset>
+					</div>
+					<div class="container form-group">
+						<h:selectOneRadio value="#{adoptionBean.type}"
+							converter="javax.faces.Integer">
+							<f:selectItem itemValue="1" itemLabel="Adoção"></f:selectItem>
+							<f:selectItem itemValue="2" itemLabel="Interesse"></f:selectItem>
+						</h:selectOneRadio>
+					</div>
+					<div class="container form-group">
+						<h:commandButton value="Salvar" styleClass="btn btn-success"
+							action="#{adoptionBean.save}" />
+						<h:commandLink value="Cancelar" styleClass="btn btn-danger"
+									action="/index.xhtml" immediate="true"/>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
