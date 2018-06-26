@@ -10,49 +10,59 @@
 	<ui:define name="body">
 		<div class="container">
 			<h:form styleClass="form-group">
-				<div class="panel panel-default panel-body">
-					<div class="col-md-6 border-right">
-						<h4>Tutor</h4>
-						<fieldset>
-							<div class="form-group">
-								<h:outputLabel value="Nome" for="tutorName"
+				<div class="panel panel-default panel-body form-group">
+					<div class="form-group">
+						<div class="col-md-6 border-right">
+							<h4>Tutor</h4>
+							<fieldset>
+								<div class="form-group">
+									<h:outputLabel value="Nome" for="tutorName"
+										styleClass="control-label" />
+									<h:selectOneMenu value="#{adoptionBean.tutorId}"
+										converter="javax.faces.Integer" id="tutorName"
+										styleClass="form-control">
+										<f:selectItems value="#{adoptionBean.tutores}" var="tutor"
+											itemValue="#{tutor.id}" itemLabel="#{tutor.name}" />
+									</h:selectOneMenu>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-md-6">
+							<h4>Animal</h4>
+							<fieldset>
+								<div class="form-group">
+									<h:outputLabel value="Nome" for="animalName"
+										styleClass="control-label" />
+									<h:selectOneMenu value="#{adoptionBean.animalId}"
+										converter="javax.faces.Integer" id="animalName"
+										styleClass="form-control">
+										<f:selectItems value="#{adoptionBean.animals}" var="animal"
+											itemValue="#{animal.id}" itemLabel="#{animal.name}" />
+									</h:selectOneMenu>
+								</div>
+							</fieldset>
+						</div>
+						<div class="container form-group row">
+							<div class="col-md-2">
+								<h:outputLabel value="Data Entrada" for="entrada"
 									styleClass="control-label" />
-								<h:selectOneMenu value="#{adoptionBean.tutorId}"
-									converter="javax.faces.Integer" id="tutorName"
-									styleClass="form-control">
-									<f:selectItems value="#{adoptionBean.tutores}" var="tutor"
-										itemValue="#{tutor.id}" itemLabel="#{tutor.name}" />
-								</h:selectOneMenu>
+								<rich:calendar id="entrada" styleClass="" value="#{adoptionBean.dataAdocao.time}"> 
+									<f:convertDateTime pattern="dd/MM/yyyy" timezone="America/Sao_Paulo"/>
+								</rich:calendar>
 							</div>
-						</fieldset>
-					</div>
-					<div class="col-md-6">
-						<h4>Animal</h4>
-						<fieldset>
-							<div class="form-group">
-								<h:outputLabel value="Nome" for="animalName"
-									styleClass="control-label" />
-								<h:selectOneMenu value="#{adoptionBean.animalId}"
-									converter="javax.faces.Integer" id="animalName"
-									styleClass="form-control">
-									<f:selectItems value="#{adoptionBean.animals}" var="animal"
-										itemValue="#{animal.id}" itemLabel="#{animal.name}" />
-								</h:selectOneMenu>
-							</div>
-						</fieldset>
-					</div>
-					<div class="container form-group">
-						<h:selectOneRadio value="#{adoptionBean.type}"
-							converter="javax.faces.Integer">
-							<f:selectItem itemValue="1" itemLabel="Adoção"></f:selectItem>
-							<f:selectItem itemValue="2" itemLabel="Interesse"></f:selectItem>
-						</h:selectOneRadio>
-					</div>
-					<div class="container form-group">
-						<h:commandButton value="Salvar" styleClass="btn btn-success"
-							action="#{adoptionBean.save}" />
-						<h:commandLink value="Cancelar" styleClass="btn btn-danger"
-									action="/index.xhtml" immediate="true"/>
+						</div>
+						<div class="container form-group">
+							<h:selectOneRadio value="#{adoptionBean.type}">
+								<f:selectItems value="#{adoptionBean.types}" var="type"
+									itemValue="#{type}" itemLabel="#{type.label}"></f:selectItems>
+							</h:selectOneRadio>
+						</div>
+						<div class="container form-group">
+							<h:commandButton value="Salvar" styleClass="btn btn-success"
+								action="#{adoptionBean.save}" />
+							<h:commandLink value="Cancelar" styleClass="btn btn-danger"
+								action="/index.xhtml" immediate="true" />
+						</div>
 					</div>
 				</div>
 			</h:form>

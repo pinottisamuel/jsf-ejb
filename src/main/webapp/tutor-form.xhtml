@@ -23,20 +23,20 @@
 								<h:message for="name"/>
 							</div>
 							<div class="form-group">
-								<h:outputLabel value="Endereço" for="address"
+								<h:outputLabel value="Endereço" for="endereco"
 									styleClass="control-label" />
-								<h:inputText id="address" styleClass="form-control" />
+								<h:inputText id="endereco" styleClass="form-control" value="#{tutorBean.tutor.endereco}"/>
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-md-6">
 									<h:outputLabel value="Número" for="number"
 										styleClass="control-label" />
-									<h:inputText id="number" styleClass="form-control" />
+									<h:inputText id="number" styleClass="form-control" value="#{tutorBean.tutor.number}"/>
 								</div>
 								<div class="form-group col-md-6">
-									<h:outputLabel value="Bairro" for="district"
+									<h:outputLabel value="Bairro" for="bairro"
 										styleClass="control-label" />
-									<h:inputText id="district" styleClass="form-control" />
+									<h:inputText id="bairro" styleClass="form-control" value="#{tutorBean.tutor.bairro}" />
 								</div>
 							</div>
 							<div class="form-group row">

@@ -18,8 +18,11 @@ public class AdoptionDao {
 		manager.persist(adoption);
 	}
 
-	public List<Adoption> list() {
-		return manager.createQuery("select a from adoption a", Adoption.class).getResultList();
+	public List<Object[]> list() {
+		String jpql = "select t.name, a.name, ad.dataAdocao, ad.type "
+				    + "from adoption ad, animal a, tutor t "
+				    + "where a.id = ad.animal "
+				    + "and t.id = ad.tutor";
+		return manager.createQuery(jpql, Object[].class).getResultList();
 	}
-
 }

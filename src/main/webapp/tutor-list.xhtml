@@ -10,7 +10,7 @@
 	<ui:define name="body">
 		<div class="container">
 			<h:form>
-				<h:dataTable var="tutor" value="#{tutorBean.tutores}">
+				<h:dataTable var="tutor" value="#{tutorBean.tutores}" styleClass="table table-sm table-bordered">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{tutor.name}" />
@@ -20,8 +20,24 @@
 						<h:outputText value="#{tutor.telefone}" />
 					</h:column>
 					<h:column>
+						<f:facet name="header">Endereço</f:facet>
+						<h:outputText value="#{tutor.endereco}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Numero</f:facet>
+						<h:outputText value="#{tutor.number}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Bairro</f:facet>
+						<h:outputText value="#{tutor.bairro}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">CPF</f:facet>
+						<h:outputText value="#{tutor.cpf}" />
+					</h:column>
+					<h:column>
 						<f:facet name="header">Remover</f:facet>
-						<h:commandLink value="DELETE" action="#{tutorBean.delete(tutor)}" ></h:commandLink>
+						<h:commandLink value="Delete" action="#{tutorBean.delete(tutor)}" ></h:commandLink>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Atualizar</f:facet>

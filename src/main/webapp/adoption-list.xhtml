@@ -9,70 +9,29 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="body">
 		<div class="container">
-			<div class="panel panel-default panel-body">
-				<h:form styleClass="form-group">
-					<div class="col-md-6 border-right">
-						<h4>Dados Pessoais</h4>
-						<fieldset>
-							<div class="form-group">
-								<h:outputLabel value="Nome" for="name"
-									styleClass="control-label" />
-								<h:inputText id="name" styleClass="form-control" />
-							</div>
-							<div class="form-group">
-								<h:outputLabel value="Endereço" for="address"
-									styleClass="control-label" />
-								<h:inputText id="address" styleClass="form-control" />
-							</div>
-							<div class="form-group row">
-								<div class="form-group col-md-6">
-									<h:outputLabel value="Número" for="number"
-										styleClass="control-label" />
-									<h:inputText id="number" styleClass="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<h:outputLabel value="Bairro" for="district"
-										styleClass="control-label" />
-									<h:inputText id="district" styleClass="form-control" />
-								</div>
-							</div>
-							<div class="form-group row">
-								<div class="form-group col-md-6">
-									<h:outputLabel value="CPF" for="cpf" styleClass="control-label" />
-									<h:inputText id="cpf" styleClass="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<h:outputLabel value="Telefone" for="telefone"
-										styleClass="control-label" />
-									<h:inputText id="telefone" styleClass="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<h:commandButton value="Salvar" styleClass="btn btn-success" />
-								<a class="btn btn-danger">Cancelar</a>
-							</div>
-						</fieldset>
-					</div>
-					<div class="col-md-6">
-						<h4>Adoção / Interesse</h4>
-						<div class="form-group">
-							<fieldset>
-								<div class="form-group">
-									<h:outputLabel value="Nome do Animal" for="animalName"
-										styleClass="control-label" />
-									<h:inputText id="animalName" styleClass="form-control" />
-								</div>
-								<div>
-									<h:selectOneRadio>
-										<f:selectItem itemValue="1" itemLabel="Adoção"></f:selectItem>
-										<f:selectItem itemValue="2" itemLabel="Interesse"></f:selectItem>
-									</h:selectOneRadio>
-								</div>
-							</fieldset>
-						</div>
-					</div>
-				</h:form>
-			</div>
+			<h:form>
+				<h:dataTable var="adoption" value="#{adoptionBean.adoptions}" styleClass="table table-sm table-bordered">
+					<h:column>
+						<f:facet name="header">Nome Tutor</f:facet>
+						<h:outputText value="#{adoption[0]}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nome Animal</f:facet>
+						<h:outputText value="#{adoption[1]}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data Entrada</f:facet>
+						<h:outputText value="#{adoption[2].time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timezone="America/Sao_Paulo" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Tipo</f:facet>
+						<h:outputText value="#{adoption[3]}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

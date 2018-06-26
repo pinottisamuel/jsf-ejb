@@ -1,5 +1,6 @@
 package br.com.adoptioncontrol.beans;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -22,11 +23,14 @@ public class AdoptionBean {
 	private AnimalService animalService;
 	
 	@Inject
-	private AdoptionService adoptionService;
+	private AdoptionService adoptionService;	
 
 	private Integer tutorId;
 	private Integer animalId;
-	private EnumAdoption type;
+	
+	private String type;
+	
+	private Calendar dataAdocao = Calendar.getInstance();
 	
 	public List<Tutor> getTutores(){
 		return tutorService.list();
@@ -36,8 +40,13 @@ public class AdoptionBean {
 		return animalService.list();
 	}
 	
-	public void save() {		
+	public String save() {		
 		adoptionService.save(tutorId, animalId, type);
+		return "/adoption-list.xhtml?faces-redirect=true";
+	}
+	
+	public List<Object[]> getAdoptions(){
+		return adoptionService.list();
 	}
 	
 	public String cancel() {
@@ -52,13 +61,17 @@ public class AdoptionBean {
 		this.animalId = animalId;
 	}
 
-	public EnumAdoption getType() {
-		return type;
+	public EnumAdoption[] getTypes() {
+		return EnumAdoption.values();
 	}
 
-	public void setType(EnumAdoption type) {
+	public void setType(String type) {
 		this.type = type;
 	}	
+	
+	public String getType() {
+		return type;
+	}
 	
 	public Integer getTutorId() {
 		return tutorId;
@@ -66,5 +79,13 @@ public class AdoptionBean {
 
 	public void setTutorId(Integer tutorId) {
 		this.tutorId = tutorId;
+	}
+
+	public Calendar getDataAdocao() {
+		return dataAdocao;
+	}
+
+	public void setDataAdocao(Calendar dataAdocao) {
+		this.dataAdocao = dataAdocao;
 	}
 }

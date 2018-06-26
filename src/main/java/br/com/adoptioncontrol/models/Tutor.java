@@ -14,9 +14,12 @@ public class Tutor {
 	private Integer id;
 	
 	private String name;
+	private String endereco;
+	private Integer number;
+	private String bairro;
+	private Integer telefone;
 	private String cpf;	
 	
-	private Integer telefone;
 	
 	@OneToOne(mappedBy="tutor", orphanRemoval=true)
 	private Adoption adoption;
@@ -57,5 +60,29 @@ public class Tutor {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 }

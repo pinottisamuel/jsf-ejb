@@ -1,5 +1,6 @@
 package br.com.adoptioncontrol.beans;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -12,6 +13,8 @@ import br.com.adoptioncontrol.service.AnimalService;
 public class AnimalBean {
 
 	private Animal animal = new Animal();
+	
+	private Calendar dataEntrada;
 	
 	@Inject
 	private AnimalService service;
@@ -51,4 +54,14 @@ public class AnimalBean {
 	public void setAnimal(Animal animal) {
 		this.animal = animal;
 	}
+
+	public Calendar getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(Calendar dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+	
+	
 }

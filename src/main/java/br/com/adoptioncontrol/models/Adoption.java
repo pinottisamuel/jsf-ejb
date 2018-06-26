@@ -1,12 +1,15 @@
 package br.com.adoptioncontrol.models;
 
-import javax.persistence.Column;
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name="adoption")
 public class Adoption {
@@ -23,12 +26,14 @@ public class Adoption {
 	@JoinColumn(name="animal_id")
 	private Animal animal = new Animal();
 	
-	@Column(name="type")
-	private EnumAdoption type;	
+	private String type;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataAdocao = Calendar.getInstance();
 
 	public Adoption() {}
 	
-	public Adoption(Integer tutorId, Integer animalId, EnumAdoption type) {
+	public Adoption(Integer tutorId, Integer animalId, String type) {
 		this.type = type;
 		this.tutor.setId(tutorId);
 		this.animal.setId(animalId);
@@ -50,7 +55,15 @@ public class Adoption {
 		return animal;
 	}
 	
-	public EnumAdoption getType() {
+	public String getType() {
 		return type;
+	}
+
+	public Calendar getDataAdocao() {
+		return dataAdocao;
+	}
+
+	public void setDataAdocao(Calendar dataAdocao) {
+		this.dataAdocao = dataAdocao;
 	}
 }

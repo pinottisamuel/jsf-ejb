@@ -1,10 +1,14 @@
 package br.com.adoptioncontrol.models;
 
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name="animal")
 public class Animal {
@@ -14,6 +18,9 @@ public class Animal {
 	private Integer id;	
 	
 	private String name;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dataEntrada = Calendar.getInstance();
 	
 	@OneToOne(mappedBy="animal", orphanRemoval=true)
 	private Adoption adoption;
@@ -43,5 +50,13 @@ public class Animal {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Calendar getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(Calendar dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
 }

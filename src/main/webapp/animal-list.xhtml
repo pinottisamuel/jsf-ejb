@@ -10,18 +10,27 @@
 	<ui:define name="body">
 		<div class="container">
 			<h:form>
-				<h:dataTable var="animal" value="#{animalBean.animals}">
+				<h:dataTable var="animal" value="#{animalBean.animals}"
+					styleClass="table table-sm table-bordered">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						<h:outputText value="#{animal.name}" />
 					</h:column>
 					<h:column>
+						<f:facet name="header">Data Entrada</f:facet>
+						<h:outputText value="#{animal.dataEntrada.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
 						<f:facet name="header">Remover</f:facet>
-						<h:commandLink value="Delete" action="#{animalBean.delete(animal)}"></h:commandLink>
+						<h:commandLink value="Delete"
+							action="#{animalBean.delete(animal)}"></h:commandLink>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Atualizar</f:facet>
-						<h:commandLink value="Atualizar" action="#{animalBean.update(animal)}" ></h:commandLink>
+						<h:commandLink value="Atualizar"
+							action="#{animalBean.update(animal)}"></h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</h:form>
